@@ -1,0 +1,1 @@
+// Write a component called Tabs that renders a tab-based navigation. It should receive an array of tabs as a prop, and each tab should be displayed as a button. When a tab is clicked, it should be highlighted as active, and its corresponding content should be displayed.

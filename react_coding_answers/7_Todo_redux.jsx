@@ -1,0 +1,1 @@
+// Create a todo list by fetching from provided api https://dummyjson.com/todos then use redux for state management.

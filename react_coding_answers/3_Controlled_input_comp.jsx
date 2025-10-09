@@ -1,0 +1,22 @@
+// Implement a controlled input component that displays the typed value in real-time.
+
+import React, {useState} from 'react'
+
+const ControlledComp = () => {
+    const [inputValue,setInputValue]= useState('');
+    const handleChange = (e) => {
+        setInputValue(e.target.value);
+    }
+  return (
+    <div>
+      <input 
+        type='text'
+        value={inputValue}
+        onChange={handleChange}
+      />
+      <p>{inputValue}</p>
+    </div>
+  )
+}
+
+export default ControlledComp
