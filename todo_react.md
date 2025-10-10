@@ -80,6 +80,10 @@
     
 # React context API:
 
+todo:
+whenever data changes how the re render cycle works 
+
+
 - It's one of the way to resolve issue of prop drilling, majorly used at cart page.
 
 - How to do setup
