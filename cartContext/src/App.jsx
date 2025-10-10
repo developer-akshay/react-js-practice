@@ -7,15 +7,6 @@ import CartContextProvider  from './store/Shopping-Cart-Context.jsx';
 import { useReducer,useState } from 'react';
 import TodoReducer from './components/TodoReducer.jsx';
 
-function todoReducer(state,action) {
-  switch(action.type) {
-      case 'ADD':
-          return 
-      case 'DELETE':
-          return 
-      case 'TOGGLECOMPLETION':
-  }
-}
 
 function App() {
   return (
