@@ -297,6 +297,62 @@ list.insertAdjacentHTML('afterbegin', '<li>HTML</li>');
 list.insertAdjacentHTML('beforeend', '<li>JavaScript</li>');
 list.insertAdjacentHTML('afterend', '<p>For frontend developers</p>');
 
+# Fetch from this url and then show the data by sorting it then add that data in html and showcase that
+
+- const url = 'https://jsonplaceholder.typicode.com/posts'
+
+- 
+const url = 'https://jsonplaceholder.typicode.com/posts'
+
+async function fetchData(url) {
+  return await fetch(url).then(res=>res.json())
+  // or
+  // const res = await fetch(url);
+  // return res.json();
+}
+
+fetchData(url).then(data=>{
+  const sortedData = data.sort((a,b)=> a.id - b.id);
+  
+  const article = document.querySelector(".articles");
+
+  sortedData.map(item=>{
+      const articleTitle = document.createElement('h6');
+      const articleDescription = document.createElement('p')
+      articleTitle.textContent = item.title
+      articleDescription.textContent = item.body
+
+      article.appendChild(articleTitle)
+      article.appendChild(articleDescription)
+  })
+})
+
+# From below structure make a utility function which passes id and in that function it should extract all the headings like h1, h2,h3 then change colour of the first letter to red 
+
+- 
+<div id="article_001">
+   <h1> Teachers reading for pleasure</h1>
+   <P>Our ‘Leading voices’ article series features school principals from across India. </P>
+   <h3> <b> Teachers </b> reading for pleasure</h3>
+   <P>Our ‘Leading voices’ article series features school principals from across India. </P>
+   <h2> Teachers reading <span> test </span> for pleasure</h2>
+   <P>Our ‘Leading voices’ article series features school principals from across India. </P>
+</div>
+
+- 
+const articleFunction = (id) => {
+  const article = document.getElementById(id);
+  const headings = article.querySelectorAll('h1, h2, h3, h4, h5, h6');
+  headings.forEach(heading => {
+      let headingText = heading.textContent.trim();
+      let [firstWord, ...rest] = headingText.split(' ');
+      let [firstChar, ...restChar] = firstWord.split("")
+      console.log(firstChar)
+      heading.innerHTML = `<span style="color: red">${firstChar}</span>${restChar.join("")} ${rest.join(' ')}`;
+  })
+}
+
+articleFunction('article_001');
 
 
 

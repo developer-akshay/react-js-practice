@@ -113,5 +113,15 @@
         // When we use the == operator (Equality operator), it only checks whether it has the same value. They both have the value of 3, so it returns true.
         // However, when we use the === operator (Strict equality operator), both value and type should be the same. It's not: new Number() is not a number, it's an object. Both return false.
 
-8
+8 
+    const a = [10,15]
+    const b = a.push(13)
+    console.log(a)
+    console.log(b)
+
+    // a will be [10,15,13] b is 3
+        
+        // Since  a.push(value) Adds value to the array & Returns new length
+
+9
  
