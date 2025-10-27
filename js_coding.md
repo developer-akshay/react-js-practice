@@ -244,4 +244,152 @@ Output: 32
 Explanation: The subarray [-1, 8, -4] has the largest product i.e 32.
 
 - 
+function maxProductSubArray(numbers) {
+    if(numbers.length == 0 ) return 0
+    let maxProduct = numbers[0];
+
+    for (let i = 0 ; i< numbers.length ;i++) {
+        let product = 1;
+        for (let j=i; j<numbers.length;j++) {
+            product *= numbers[j];
+            if(product>maxProduct) {
+                maxProduct = product
+            }
+        } 
+    }
+    return maxProduct
+  }
+  
+  console.log(maxProductSubArray([1, 2, -3, 5, 1])); // 5
+  console.log(maxProductSubArray([1,2,0,-1,8,-4])); // 32
+  console.log(maxProductSubArray([9])); // 9
+  
+# Given an array of integers numbers, determine the subarray that has the highest sum and return that sum. A subarray is a contiguous segment of an array where all elements are taken from consecutive indices, preserving their order, such as [2, 3] in [1, 2, 3, 4], while non-contiguous selections like [1, 3] are not valid subarray.
+
+- 
+Input: numbers = [-1,5,-3,9,-11]
+Output: 11
+Explanation: The subarray [5, -3, 9] has the largest sum i.e 11.
+
+Input: numbers = [9]
+Output: 9
+Explanation: The single-element subarray [9] has the largest sum i.e 9.
+
+Input: numbers = [1,2,3,4]
+Output: 10
+Explanation: The subarray [1,2,3,4] has the largest sum i.e 10.
+
+- 
+function maxSumSubArray(numbers) {
+    if(numbers.length == 0) return 0
+    let maxSum = numbers[0];
+
+    for(let i = 0; i <numbers.length ; i++){
+        let sum = 0;
+        for(let j = i;j<numbers.length ; j++){
+            sum += numbers[j];
+            if(sum>maxSum){
+                maxSum = sum;
+            }
+        }
+    }
+    return maxSum
+  }
+
+console.log(maxSumSubArray([-1,5,-3,9,-11])) //11
+console.log(maxSumSubArray([9])) //9
+console.log(maxSumSubArray([1,2,3,4])) //10
+
+# Given an array of integers numbers and a number k, find the k most frequent numbers in the array. Here, k represents the number of elements that should be returned, which are the ones that appear the most frequently. The order of the result does not matter.
+
+- 
+Input: numbers = [4,4,4,6,6,5,5,5], k = 2
+Output: [4,5]
+Explanation: The two most frequent numbers are 4 and 5, as they appear the most often in the array.
+
+Input: numbers = [7,7,7,8,8,9,9,9], k = 3
+Output: [7,9,8]
+Explanation: The three most frequent numbers are 7, 9, and 8.
+
+Input: numbers = [10,10,10,10,10], k = 1
+Output: [10]
+Explanation: Since there is only one unique number, 10, it is the most frequent.
+
+- 
+function mostCommonElements(numbers, k) {
+    let uniqueNum = [... new Set(numbers)];
+    let commonElements = {}
+    let mostCommonEl = []
+
+    for(let i =0 ; i< uniqueNum.length ; i++){
+        let numFrequency = numbers.filter(a => a == uniqueNum[i] ).length;
+        commonElements[uniqueNum[i]] = numFrequency;
+    }
+    // converting object to array 
+    let entries = Object.entries(commonElements);
+    //sorting here [1] 1 is refering to value and 0 is refering to key 
+    // by default object sort key if it numeric '1' this string is also refered as numeric only
+    entries.sort((a,b)=>b[1]-a[1])
+
+    for(let i= 0 ; i<k;i++){
+        mostCommonEl.push(Number(entries[i][0]))
+    }
+    return mostCommonEl
+}
+
+console.log(mostCommonElements([4,4,2,4,4,4,4,4,2,2,2,2,6,6,5,5,5],2)) // [4,5]
+console.log(mostCommonElements([7,7,7,8,8,9,9,9],3)) // [7,9,8]
+console.log(mostCommonElements([10,10,10,10,10],1)) // [10]
+
+# Given an array of integers numbers, return a new array result where each element result[i] represents the product of all the elements in numbers except for numbers[i].
+
+- 
+Input: numbers = [1,2,3]
+Output: [6,3,2]
+Explanation: Output is multiplication of all other elements except self, i.e 2*3, 1*3, 1*2
+
+Input: numbers = [2,0,3]
+Output: [0,6,0]
+Explanation: Output is multiplication of all other elements except self, i.e 0*3, 2*3, 2*0
+
+Input: numbers = [0,0,-1,1]
+Output: [0,0,0,0]
+Explanation: Output is multiplication of all other elements except self, i.e 0*-1*1, 0*-1*1, 0*0*1, 0*0*-1
+
+- 
+function arrayProductExcludingCurrent(numbers) {
+  let arrProduct = [];
+  for (let i = 0; i < numbers.length; i++) {
+    let product = 1;
+    for (let j = 0; j < numbers.length; j++) {
+      if (j != i) {
+        product *= numbers[j];
+      }
+    }
+    arrProduct.push(product);
+    product = 1;
+  }
+  return arrProduct;
+}
+
+console.log(arrayProductExcludingCurrent([1, 2, 3])); // [6,3,2]
+console.log(arrayProductExcludingCurrent([2, 0, 3])); // [0,6,0]
+console.log(arrayProductExcludingCurrent([0, 0, -1, 1])); // [0,0,0,0]
+
+# Given an array of integers numbers where each element in the array represents the maximum number of positions that can be moved forward from that index; it is acceptable to move by fewer positions. Determine whether it is possible to reach the last index of the array by starting from the first index. Return true if it can be reached and false otherwise.
+
+- 
+Input: numbers = [4,1,0,0,2,3]
+Output: true
+Explanation: Move from index 0 to 4, then move 1 position to the last index.
+
+Input: numbers = [1,0,0,0]
+Output: false
+Explanation: Can only move from index 0 to index 1 and no further movements thereafter, so it impossible to reach the last index.
+
+Input: numbers = [2,3,1,1,4]
+Output: true
+Explanation: Move 1 position forward from index 0 to index 1 (it is allowed to move up to 2 positions, but going to index 1 first allows us to move further). From index 1, move 3 positions to reach the last index.
+
+- 
 

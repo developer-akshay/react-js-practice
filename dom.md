@@ -304,13 +304,6 @@ list.insertAdjacentHTML('afterend', '<p>For frontend developers</p>');
 - 
 const url = 'https://jsonplaceholder.typicode.com/posts'
 
-async function fetchData(url) {
-  return await fetch(url).then(res=>res.json())
-  // or
-  // const res = await fetch(url);
-  // return res.json();
-}
-
 fetchData(url).then(data=>{
   const sortedData = data.sort((a,b)=> a.id - b.id);
   
