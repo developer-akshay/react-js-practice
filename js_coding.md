@@ -392,4 +392,46 @@ Output: true
 Explanation: Move 1 position forward from index 0 to index 1 (it is allowed to move up to 2 positions, but going to index 1 first allows us to move further). From index 1, move 3 positions to reach the last index.
 
 - 
+function arrayReachableEnd(numbers) {
+
+    let maxIndex = 0;
+    let reachable = false 
+    for( let i = 0 ; i<=maxIndex; i++) {
+        
+        let reachableIndex = i + numbers[i];
+        let arrMaxIndex = numbers.length-1;
+        maxIndex = Math.max(maxIndex, reachableIndex);
+        
+        console.log('i : ',i, ' reachableIndex : ', reachableIndex, ' arrMaxIndex : ',arrMaxIndex, 'maxIndex : ',maxIndex)
+
+        if(arrMaxIndex <= reachableIndex) {
+            reachable = true;
+            break
+        }
+    }
+    return reachable
+}
+console.log(arrayReachableEnd([2,2,0,3,2,2,4])); // true
+console.log(arrayReachableEnd([4, 1, 0, 0, 2, 3])); // true 
+console.log(arrayReachableEnd([1, 0, 0, 0])); // false
+console.log(arrayReachableEnd([2, 3, 1, 1, 4])); // true [3, 0, 0, 0, 1]
+console.log(arrayReachableEnd([3, 0, 0, 0, 1])); // false
+console.log(arrayReachableEnd([3, 2, 1, 3, 1])); // true
+
+# Given a sorted and rotated array numbers containing unique elements and an integer target, return the index of target if it is in numbers, or -1 if it is not. Rotating an array [a[0], a[1], a[2], ..., a[n-1]] once results in [a[n-1], a[0], a[1], a[2], ..., a[n-2]]. Rotating it a second time results in [a[n-2], a[n-1], a[0], a[1], ..., a[n-3]]. Develop an algorithm that runs in O(log n) time complexity.
+
+- 
+Input: numbers = [0,1,2,3,4], target = 2
+Output: 2
+Explanation: The original array [0,1,2,3,4] was rotated 0 times and 2 is present at 2nd index in given array
+
+Input: numbers = [2,3,4,0,1], target = 0
+Output: 3
+Explanation: The original array [0,1,2,3,4] was rotated 3 times and became [2,3,4,0,1]. 0 is present at 3rd index in given array
+
+Input: numbers = [4], target = 2
+Output: -1
+Explanation: The original array [4] was rotated 0 times and became [4]. 2 is not present in the given array
+
+- 
 
