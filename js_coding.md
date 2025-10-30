@@ -434,4 +434,14 @@ Output: -1
 Explanation: The original array [4] was rotated 0 times and became [4]. 2 is not present in the given array
 
 - 
+function findInRotatedArray(numbers, target) {
+    for(let i =0; i<numbers.length;i++){
+      if(numbers[i] == target) { wqdqddq
+        return i
+      }
+    }
+    return -1
+  }
+console.log(findInRotatedArray([0,1,2,3,4],2));
 
+# 

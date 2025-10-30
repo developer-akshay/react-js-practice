@@ -37,7 +37,7 @@ export default function CartContextProvider ({children})  {
             });
           }
     
-          return {
+          return { 
             items: updatedItems,
           };
         });
