@@ -1,26 +1,17 @@
-function same(arr1, arr2) {
-    if(arr1.length !== arr2.length) return false
-    let frequencyCounter1 ={}
-    let frequencyCounter2 = {}
+function sameFrequency(num1, num2) {
 
-    for (let num of arr1) {
-        frequencyCounter1[num] = (frequencyCounter1[num] || 0) +1
+    let str1 = num1.toString();
+    let str2 = num2.toString();
+
+    let count = new Array(10).fill(0); //it will create array with total number of 10 elements with 0 value 
+    for(let i = 0 ; i<str1.length ;i++) {
+        count[str1[i] - '0']++; // Here 0 is converting string to int since it does type conversion
+        count[str2[i] - '0']--;   
     }
-    for (let num of arr2) {
-        frequencyCounter2[num] = (frequencyCounter2[num] || 0) +1
-    }
-    console.log(frequencyCounter2, frequencyCounter1)
-    for (let key in frequencyCounter1) {
-        if( !(key **2 in frequencyCounter2) ) {
-            return false
-        }
-        if (frequencyCounter2[key ** 2] !== frequencyCounter1[key]){
-            return false
-        }
-    }
-    return true
+
+    return count.every(item => item === 0)
 }
 
-console.log(same ([1,2,3],[4,9,1]))
-console.log(same([1,1,2],[1,4,4]))
+console.log(sameFrequency(182, 281)); // true
+console.log(sameFrequency(34, 14));   // false
 
