@@ -1,1 +1,1 @@
-# react-js-practice
+# react-js-notes
